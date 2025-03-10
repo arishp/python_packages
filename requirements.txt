@@ -1,3 +1,8 @@
 flask
+opencv-python
+Pillow
+SpeechRecognition
+paho-mqtt
+
 Django
 fastapi

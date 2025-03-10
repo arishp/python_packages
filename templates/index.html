@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Image Processing and Voice Assistant</title>
+</head>
+<body>
+    <h1>Smart Image Processing and Voice Assistant</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <select name="process_type">
+            <option value="grayscale">Grayscale</option>
+            <option value="edges">Edges</option>
+            <option value="resize">Resize</option>
+        </select>
+        <button type="submit">Process Image</button>
+    </form>
+
+    {% if processed_image %}
+        <img src="data:image/png;base64,{{ processed_image }}" alt="Processed Image">
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="audio">
+        <button type="submit">Transcribe Audio</button>
+    </form>
+
+    {% if transcription %}
+        <p>Transcription: {{ transcription }}</p>
+    {% endif %}
+
+    <h2>MQTT Messages:</h2>
+    <ul>
+        {% for message in mqtt_messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
