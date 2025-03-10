@@ -11,3 +11,14 @@ seaborn
 plotly
 
 fastapi
+uvicorn
+beautifulsoup4
+requests
+numpy
+# pysqlite3 or brew install sqlite3
+
+# tkinter or brew install python-tk
+requests
+pygame
+pyserial
+pyserial-virtual-ports

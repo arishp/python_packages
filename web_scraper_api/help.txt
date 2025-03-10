@@ -1,0 +1,8 @@
+Scrape Data:
+http://127.0.0.1:8000/scrape/YOUR_WEBSITE_URL
+
+Get Scraped Data:
+http://127.0.0.1:8000/data
+
+Get Analysis Results:
+http://127.0.0.1:8000/analysis
