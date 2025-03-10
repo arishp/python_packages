@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Visualization Dashboard</title>
+</head>
+<body>
+    <h1>Data Visualization Dashboard</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="csv_file">
+        <button type="submit">Upload CSV</button>
+    </form>
+
+    {% if data is not None %}
+        <h2>Uploaded Data:</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for col in data.columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in data.iterrows %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if plot_html %}
+            <h2>Matplotlib/Seaborn Plot:</h2>
+            {{ plot_html|safe }}
+        {% endif %}
+
+        {% if plotly_html %}
+            <h2>Plotly Plot:</h2>
+            {{ plotly_html|safe }}
+        {% endif %}
+
+    {% endif %}
+</body>
+</html>

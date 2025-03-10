@@ -1,0 +1,9 @@
+Project setup:
+django-admin startproject data_visualization_dashboard
+cd data_visualization_dashboard
+python manage.py startapp data_visualization
+
+Project execute:
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver

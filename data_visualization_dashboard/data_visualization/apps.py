@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FirstAppConfig(AppConfig):
+class DataVisualizationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'first_app'
+    name = 'data_visualization'

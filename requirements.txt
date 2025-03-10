@@ -4,5 +4,10 @@ Pillow
 SpeechRecognition
 paho-mqtt
 
-Django
+django
+pandas
+matplotlib
+seaborn
+plotly
+
 fastapi
