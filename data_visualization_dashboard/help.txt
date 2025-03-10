@@ -1,9 +1,19 @@
-Project setup:
+Django setup:
 django-admin startproject data_visualization_dashboard
 cd data_visualization_dashboard
 python manage.py startapp data_visualization
+
+Files to edit:
+data_visualization/views.py
+data_visualization/urls.py
+data_visualization_dashboard/urls.py
+data_visualization/templates/data_visualization/dashboard.html
+data_visualization_dashboard/settings.py # add 'data_visualization' to INSTALLED_APPS
 
 Project execute:
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
+
+URL to execute:
+http://127.0.0.1:8000/data_visualization/
