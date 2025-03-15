@@ -2,6 +2,8 @@ flask
 opencv-python
 Pillow
 SpeechRecognition
+# brew install portaudio
+PyAudio
 paho-mqtt
 
 django

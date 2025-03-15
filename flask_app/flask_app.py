@@ -17,18 +17,50 @@ MQTT_PORT = 1883
 MQTT_TOPIC = "image_processing/data"
 mqtt_received_messages = []
 
+"""
+MQTT_BROKER: Defines the address of the MQTT broker. Here, it uses "test.mosquitto.org", a public MQTT broker.
+MQTT_PORT: Sets the MQTT broker port. The default MQTT port is 1883 (for non-secure connections).
+MQTT_TOPIC: Specifies the topic to which the client will publish and subscribe. In this case, "image_processing/data".
+mqtt_received_messages: Initializes an empty list to store messages received from the broker.
+"""
+
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
     client.subscribe(MQTT_TOPIC)
 
+"""
+This function is called when the client successfully connects to the MQTT broker.
+rc (result code) indicates the connection status (0 = success).
+client.subscribe(MQTT_TOPIC): Subscribes the client to the specified topic ("image_processing/data") to receive messages.
+"""
+
 def on_message(client, userdata, msg):
     mqtt_received_messages.append(msg.payload.decode())
+
+"""
+This function is triggered whenever a new message arrives on the subscribed topic.
+msg.payload.decode(): Decodes the message from bytes to a string.
+The decoded message is appended to mqtt_received_messages.
+"""
 
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
+
+"""
+mqtt.Client(): Creates an MQTT client instance.
+client.on_connect = on_connect: Assigns the on_connect callback function to handle connection events.
+client.on_message = on_message: Assigns the on_message callback function to process incoming messages.
+"""
+
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
 client.loop_start()
+
+"""
+client.connect(MQTT_BROKER, MQTT_PORT, 60): Connects to the MQTT broker on the given port. 
+The 60 parameter is the keep-alive interval in seconds.
+client.loop_start(): Starts a non-blocking loop to continuously handle network events and receive messages in the background.
+"""
 
 # Simulated MQTT Publisher
 def mqtt_publisher():
@@ -36,9 +68,22 @@ def mqtt_publisher():
         client.publish(MQTT_TOPIC, "Sensor Data: " + str(time.time()))
         time.sleep(5)
 
+"""
+This function continuously publishes messages to the MQTT topic.
+client.publish(MQTT_TOPIC, "Sensor Data: " + str(time.time())):
+Sends a message with simulated sensor data (a timestamp).
+time.sleep(5): Waits 5 seconds before sending the next message.
+"""
+
 publisher_thread = threading.Thread(target=mqtt_publisher)
 publisher_thread.daemon = True
 publisher_thread.start()
+
+"""
+threading.Thread(target=mqtt_publisher): Creates a new thread to run the mqtt_publisher() function.
+publisher_thread.daemon = True: Ensures the thread terminates when the main program exits.
+publisher_thread.start(): Starts the publisher thread.
+"""
 
 # Image Processing Functions
 def process_image(image_data, process_type):
