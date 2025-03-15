@@ -10,6 +10,7 @@ django
 pandas
 matplotlib
 seaborn
+nbformat
 plotly
 
 fastapi
